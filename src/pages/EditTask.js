@@ -12,15 +12,15 @@ const EditTask = () =>{
     const {name, description,status} = existingTask[0];
     const [uname, setName] = useState(name);
     const [udescription, setDescription] = useState(description);
-    const [ustatus, setStatus] = useState('Pending');
+    const [ustatus, setStatus] = useState(status);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-  
-
+   
     const handleStatus = (event) => {
-  
-        if(event.target.value=='on'){
+        if(event.target.checked){
             setStatus('Completed');
+        }else{
+            setStatus('Pending');
         }
     }
     
@@ -49,7 +49,7 @@ const EditTask = () =>{
                     <input type='description' name='description' className='form-control' placeholder='Enter description' value={udescription} onChange={e=> setDescription(e.target.value)} />
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox"  onChange={handleStatus} defaultChecked={status === 'Completed' ? true  : false}/>
+                    <input className="form-check-input" type="checkbox" onChange={handleStatus} checked={ustatus==='Completed'?true:false}/>
                     <label className="form-check-label" htmlFor="flexSwitchCheckDefault" >complete</label>
                 </div>
                 <br/>
